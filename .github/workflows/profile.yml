@@ -1,0 +1,42 @@
+name: profile
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      # v3
+      - uses: Platane/snk/svg-only@d8f6715049803e982ee5ff501b6b9b7d5deeb09b
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/snake-dark.svg?color_snake=#f0f6fc&color_dots=#161b22,#0e4429,#006d32,#26a641,#39d353
+            dist/snake-light.svg?color_snake=#24292f&color_dots=#ebedf0,#9be9a8,#40c463,#30a14e,#216e39
+
+      - name: Stats card
+        run: node .github/scripts/stats.mjs "$OWNER" dist/stats.svg
+        env:
+          OWNER: ${{ github.repository_owner }}
+
+      # v5.0.0
+      - uses: crazy-max/ghaction-github-pages@1d6ee9b181a81033a16bd707a1401afa978daab4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
