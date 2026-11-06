@@ -2,6 +2,7 @@
 // Usage: node stats.mjs <github-user> <output.svg>
 import fs from 'node:fs';
 import path from 'node:path';
+import { calendar } from './calendar.mjs';
 
 const [, , user, out] = process.argv;
 
@@ -23,25 +24,6 @@ const C = {
   green: ['#39d353', '#26a641', '#1a7f37', '#116329', '#6e7681', '#484f58'],
 };
 
-async function calendar(query = '') {
-  const res = await fetch(`https://github.com/users/${user}/contributions${query}`, {
-    headers: { 'X-Requested-With': 'XMLHttpRequest', 'User-Agent': 'profile-stats' },
-  });
-  if (!res.ok) throw new Error(`calendar ${res.status}`);
-  const html = await res.text();
-  const tips = new Map();
-  for (const m of html.matchAll(/<tool-tip[^>]*\bfor="([^"]+)"[^>]*>([^<]*)<\/tool-tip>/g)) tips.set(m[1], m[2]);
-  const days = new Map();
-  for (const [cell] of html.matchAll(/<td\b[^>]*>/g)) {
-    const date = cell.match(/data-date="([\d-]+)"/)?.[1];
-    const id = cell.match(/\bid="([^"]+)"/)?.[1];
-    if (!date || !id) continue;
-    const count = tips.get(id)?.match(/^\s*([\d,]+) contribution/)?.[1];
-    days.set(date, count ? Number(count.replace(/,/g, '')) : 0);
-  }
-  return days;
-}
-
 const iso = (d) => d.toISOString().slice(0, 10);
 const addDays = (date, n) => {
   const d = new Date(`${date}T00:00:00Z`);
@@ -49,14 +31,14 @@ const addDays = (date, n) => {
   return iso(d);
 };
 
-const last = await calendar();
+const last = await calendar(user);
 const dates = [...last.keys()].sort();
 if (dates.length < 300) throw new Error('calendar looks wrong, keeping the old card');
 
 const year = Number(dates.at(-1).slice(0, 4));
 const history = new Map();
 for (const y of [year - 2, year - 1, year]) {
-  for (const [k, v] of await calendar(`?from=${y}-01-01&to=${y}-12-31`)) if (k.startsWith(String(y))) history.set(k, v);
+  for (const [k, v] of await calendar(user, `?from=${y}-01-01&to=${y}-12-31`)) if (k.startsWith(String(y))) history.set(k, v);
 }
 
 const total = dates.reduce((n, d) => n + last.get(d), 0);
@@ -111,7 +93,7 @@ const bars = months
     const top = m === best;
     return (
       `<rect class="bar" style="animation-delay:${i * 45}ms" x="${x}" y="${BASE - h}" width="${BAR}" height="${h}" rx="3" fill="${top ? C.green[0] : C.green[1]}"/>` +
-      (top ? text(x + BAR / 2, BASE - h - 8, 14, C.text, m.count, 'text-anchor="middle" font-weight="600"') : '') +
+      text(x + BAR / 2, BASE - h - 7, 13, top ? C.text : C.muted, m.count, `text-anchor="middle"${top ? ' font-weight="600"' : ''}`) +
       text(x + BAR / 2, BASE + 22, 13, C.muted, m.name[0], 'text-anchor="middle"')
     );
   })

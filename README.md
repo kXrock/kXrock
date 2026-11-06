@@ -1,8 +1,8 @@
 <div align="center">
 
-<img width="100%" alt="Kerem Kaya" src="assets/banner.svg" />
+<a href="#_"><img width="100%" alt="Kerem Kaya" src="assets/banner.svg" /></a>
 
-<img alt="Founder of Rocco, Hedian and Markapping. Two iOS apps live on the App Store. Computer Science, Özyeğin 2026." src="assets/typing.svg" />
+<a href="#_"><img alt="Founder of Rocco, Hedian and Markapping. Two iOS apps live on the App Store. Computer Science, Özyeğin 2026." src="assets/typing.svg" /></a>
 
 <a href="https://keremkaya.dev"><img alt="keremkaya.dev" src="assets/badge-site.svg" /></a>
 <a href="https://www.linkedin.com/in/kerem-kaya-1574b0227"><img alt="LinkedIn" src="assets/badge-linkedin.svg" /></a>
@@ -37,23 +37,19 @@ Computer Science graduate from Özyeğin (2026). I took Hedian from idea to the 
 
 ### Tools I use
 
-<img alt="TypeScript, JavaScript, React, Flutter, Dart, Solidity, Supabase, PostgreSQL, Cloudflare, three.js, Java, C++, Git" src="assets/tools.svg" />
+<a href="#_"><img width="46" alt="TypeScript" title="TypeScript" src="assets/tools/ts.svg" /></a> <a href="#_"><img width="46" alt="JavaScript" title="JavaScript" src="assets/tools/js.svg" /></a> <a href="#_"><img width="46" alt="React" title="React" src="assets/tools/react.svg" /></a> <a href="#_"><img width="46" alt="Flutter" title="Flutter" src="assets/tools/flutter.svg" /></a> <a href="#_"><img width="46" alt="Dart" title="Dart" src="assets/tools/dart.svg" /></a> <a href="#_"><img width="46" alt="Solidity" title="Solidity" src="assets/tools/solidity.svg" /></a> <a href="#_"><img width="46" alt="Supabase" title="Supabase" src="assets/tools/supabase.svg" /></a> <a href="#_"><img width="46" alt="PostgreSQL" title="PostgreSQL" src="assets/tools/postgres.svg" /></a> <a href="#_"><img width="46" alt="Cloudflare" title="Cloudflare" src="assets/tools/cloudflare.svg" /></a> <a href="#_"><img width="46" alt="three.js" title="three.js" src="assets/tools/threejs.svg" /></a> <a href="#_"><img width="46" alt="Java" title="Java" src="assets/tools/java.svg" /></a> <a href="#_"><img width="46" alt="C++" title="C++" src="assets/tools/cpp.svg" /></a> <a href="#_"><img width="46" alt="Git" title="Git" src="assets/tools/git.svg" /></a>
 
 ### GitHub stats
 
 <div align="center">
 
-<img width="100%" alt="Contributions in the last 12 months, growth, active days, longest streak, monthly chart and languages" src="https://raw.githubusercontent.com/kXrock/kXrock/output/stats.svg" />
+<a href="#_"><img width="100%" alt="Contributions in the last 12 months, growth, active days, longest streak, monthly chart and languages" src="https://raw.githubusercontent.com/kXrock/kXrock/output/stats.svg" /></a>
 
 <br />
 <br />
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kXrock/kXrock/output/snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kXrock/kXrock/output/snake-light.svg" />
-  <img width="100%" alt="A snake eating my contribution graph" src="https://raw.githubusercontent.com/kXrock/kXrock/output/snake-dark.svg" />
-</picture>
+<a href="#_"><img width="100%" alt="My contribution graph being eaten cell by cell" src="https://raw.githubusercontent.com/kXrock/kXrock/output/contributions.svg" /></a>
 
-<img width="100%" alt="" src="assets/footer.svg" />
+<a href="#_"><img width="100%" alt="" src="assets/footer.svg" /></a>
 
 </div>

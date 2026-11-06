@@ -20,16 +20,10 @@ jobs:
         with:
           persist-credentials: false
 
-      # v3
-      - uses: Platane/snk/svg-only@d8f6715049803e982ee5ff501b6b9b7d5deeb09b
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/snake-dark.svg?color_snake=#f0f6fc&color_dots=#161b22,#0e4429,#006d32,#26a641,#39d353
-            dist/snake-light.svg?color_snake=#24292f&color_dots=#ebedf0,#9be9a8,#40c463,#30a14e,#216e39
-
-      - name: Stats card
-        run: node .github/scripts/stats.mjs "$OWNER" dist/stats.svg
+      - name: Stats card and contribution graph
+        run: |
+          node .github/scripts/stats.mjs "$OWNER" dist/stats.svg
+          node .github/scripts/eater.mjs "$OWNER" dist
         env:
           OWNER: ${{ github.repository_owner }}
 
